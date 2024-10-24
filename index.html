@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Презентация</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            overflow: hidden;
+            background-image: url('https://tailwindcss.com/_next/static/media/hero-dark@90.dba36cdf.jpg');
+        }
+        section {
+            height: 100vh;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+        .black-area {
+            background-color: black;
+            height: 100vh;
+            width: 40%;
+        }
+        .text-blok {
+            max-width: 677px;
+        }
+        #navigation {
+            transition: transform 0.3s;
+        }
+        li {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+        strong {
+            font-weight: 900;
+        }
+    </style>
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 54;
+
+        function goToSlide(slide) {
+            if (slide < 1) slide = 1;
+            if (slide > totalSlides) slide = totalSlides;
+            const section = document.getElementById(`slide${slide}`);
+            if(section) section.scrollIntoView({behavior: 'smooth'});
+            currentSlide = slide;
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if(event.key == "ArrowUp") goToSlide(currentSlide - 1);
+            if(event.key == "ArrowLeft") goToSlide(currentSlide - 2);
+            if(event.key == "ArrowDown") goToSlide(currentSlide + 1);
+            if(event.key == "ArrowRight") goToSlide(currentSlide + 2);
+        });
+
+        let isThrottled = false;
+        window.addEventListener('wheel', (event) => {
+            if (!isThrottled && event.deltaY > 0) {
+                goToSlide(currentSlide + 1); 
+            } 
+            if (!isThrottled && event.deltaY < 0) {
+                goToSlide(currentSlide - 1); 
+            }
+            isThrottled = true; 
+            setTimeout(() => { isThrottled = false; }, 500);
+        });
+
+        goToSlide(1);
+    </script>
+</head>
+<body>
+    <nav class="w-3/5 fixed bottom-0 mb-4 flex justify-between items-center bg-transparent">
+        
+        
+        <div class="flex items-center mx-auto">
+            <a href="javascript:void(0)" class="bg-black text-white border border-indigo-900 py-2 px-4 rounded mx-1" onclick="goToSlide(1)">Начало</a>
+            <a href="javascript:void(0)" class="bg-black text-white border border-indigo-900 py-2 px-4 rounded mx-1" onclick="goToSlide(currentSlide - 2)">&lt;&lt;</a>
+            <a href="javascript:void(0)" class="bg-black text-white border border-indigo-900 py-2 px-4 rounded mx-1" onclick="goToSlide(currentSlide - 1)">&lt;</a>
+            <a href="javascript:void(0)" class="bg-black text-white border border-indigo-900 py-2 px-4 rounded mx-1" onclick="goToSlide(currentSlide + 1)">&gt;</a>
+            <a href="javascript:void(0)" class="bg-black text-white border border-indigo-900 py-2 px-4 rounded mx-1" onclick="goToSlide(currentSlide + 2)">&gt;&gt;</a>
+            <a href="javascript:void(0)" class="bg-black text-white border border-indigo-900 py-2 px-4 rounded mx-1" onclick="goToSlide(Infinity)">Конец</a>
+        </div>
+    </nav>
+
+    
+    
+    
+    
+    
+    
+<section id="slide1">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                <h1 class="text-5xl font-bold">Что такое нейросети и GPT</h1>
+                <p class="mt-4 text-2xl">
+                    Нейросети — это мощный инструмент, основанный на принципах работы человеческого мозга. GPT, или Generative Pre-trained Transformer, является одним из наиболее передовых примеров нейросетевых технологий. Это не просто программа или чат-бот, а система, которая способна обрабатывать и генерировать тексты на человеческом языке. GPT можно сравнить с автозаполнением на клавиатуре телефона (например, T9), который предлагает слова или фразы на основе контекста, однако GPT значительно превосходит по своим возможностям: он понимает сложные запросы, дает структурированные ответы и может вести длительные диалоги.
+                </p>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img src="a neural network concept with brain patterns and digital data connections on a dark blue background.jpeg" alt="Слайд 1" class="object-cover w-full h-full">
+        </div>
+    </div>
+</section>
+
+<hr class="border-t border-gray-700">
+
+
+
+
+
+
+
+<section id="slide2">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                <h1 class="text-5xl font-bold">Как получить доступ к GPT в России</h1>
+                <p class="mt-4 text-2xl">
+                    Доступ к GPT в России можно получить несколькими способами, даже несмотря на ограничения. Один из вариантов — это использование VPN, который позволяет подключаться к сервисам OpenAI через зарубежные сервера, обходя региональные блокировки. Существует множество бесплатных и платных VPN-сервисов, которые могут обеспечить стабильное соединение.<br><br>
+                    Второй, более простой путь — это использование клонов GPT в Telegram. Некоторые боты в мессенджере предлагают доступ к нейросетям, в том числе и GPT, через интерфейс, который интегрирован прямо в чат. К примеру, вы можете использовать этот <a href="https://t.me/ai_m_gpt_bot" class="text-blue-500 underline">бот</a>.
+                </p>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img src="a concept showing VPN and access to AI tools, illustrated on a dark blue background.jpeg" alt="Слайд 2" class="object-cover w-full h-full">
+        </div>
+    </div>
+</section>
+
+<hr class="border-t border-gray-700">
+
+
+
+
+
+
+
+
+<section id="slide3">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                <h1 class="text-5xl font-bold">Зачем использовать GPT: задачи для бизнеса </h1>
+                <p class="mt-4 text-2xl">
+                    Используя GPT непосредственно в диалоге, без дополнительных интеграций, можно решать множество задач для бизнеса, связанных с текстовой информацией, идеями, советами и планированием. Вот список задач, которые можно эффективно решать в таком формате общения:
+                    <!-- <ul class="list-disc ml-6 mt-4">
+                        <li>Создание контента (статьи, рекламные тексты, описания товаров).</li>
+                        <li>Ответы на клиентские запросы и поддержка.</li>
+                        <li>Генерация идей для маркетинговых кампаний.</li>
+                        <li>Анализ и обработка больших объемов текстовой информации.</li>
+                        <li>Автоматизация отчетов и резюме данных.</li>
+                        <li>Помощь в написании бизнес-планов и стратегий.</li>
+                    </ul> -->
+                </p>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img src="a business team collaborating with AI for various tasks on a dark blue background.jpeg" alt="Слайд 3" class="object-cover w-full h-full">
+        </div>
+    </div>
+</section>
+
+<hr class="border-t border-gray-700">
+
+
+
+
+
+
+
+<section id="slide4">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                
+                <h2 class="text-4xl font-bold">1. Генерация идей для бизнеса и маркетинга</h2>
+                <p class="mt-4 text-2xl">
+                    В диалоге можно генерировать креативные идеи для различных направлений бизнеса, например:
+                    <ul class="list-disc ml-6 mt-4">
+                        <li>Разработка новых продуктов или услуг.</li>
+                        <li>Идеи для рекламных кампаний.</li>
+                        <li>Сценарии для социальных сетей, видеороликов или контента.</li>
+                        <li>Генерация названий для компаний, продуктов или брендов.</li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img src="business idea generation with creative elements on a dark blue background.jpeg" alt="Слайд 1" class="object-cover w-full h-full">
+        </div>
+    </div>
+</section>
+
+<hr class="border-t border-gray-700">
+
+<section id="slide5">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                
+                <h2 class="text-4xl font-bold">2. Создание контента</h2>
+                <p class="mt-4 text-2xl">
+                    GPT может помочь создавать текстовые материалы для бизнеса:
+                    <ul class="list-disc ml-6 mt-4">
+                        <li>Написание статей, блогов, пресс-релизов.</li>
+                        <li>Подготовка постов для социальных сетей.</li>
+                        <li>Составление писем и рассылок для клиентов.</li>
+                        <li>Формулировка текстов для лендингов или страниц товаров.</li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img src="content creation for businesses on a dark blue background.jpeg" alt="Слайд 2" class="object-cover w-full h-full">
+        </div>
+    </div>
+</section>
+
+<hr class="border-t border-gray-700">
+
+<section id="slide6">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                
+                <h2 class="text-4xl font-bold">3. Написание скриптов для продаж</h2>
+                <p class="mt-4 text-2xl">
+                    GPT может предложить готовые сценарии для общения с клиентами, будь то телефонные переговоры, встречи или переписка:
+                    <ul class="list-disc ml-6 mt-4">
+                        <li>Подготовка речевых модулей для менеджеров по продажам.</li>
+                        <li>Создание текстов для скриптов рассылок или коммерческих предложений.</li>
+                        <li>Формулировка ответов на частые возражения клиентов.</li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img src="sales scripts writing and communication strategies on a dark blue background.jpeg" alt="Слайд 3" class="object-cover w-full h-full">
+        </div>
+    </div>
+</section>
+
+<hr class="border-t border-gray-700">
+
+<section id="slide7">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                
+                <h2 class="text-4xl font-bold">4. Создание и оптимизация рекламных объявлений</h2>
+                <p class="mt-4 text-2xl">
+                    GPT может помочь в создании рекламных текстов для различных платформ:
+                    <ul class="list-disc ml-6 mt-4">
+                        <li>Генерация объявлений для контекстной рекламы.</li>
+                        <li>Подбор ключевых слов и формулировок для рекламы в социальных сетях.</li>
+                        <li>Тестирование разных версий текста (A/B-тесты).</li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img src="creation and optimization advertisement withoot text on a dark blue background.jpeg" alt="Слайд 4" class="object-cover w-full h-full">
+        </div>
+    </div>
+</section>
+
+<hr class="border-t border-gray-700">
+
+<section id="slide8">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                
+                <h2 class="text-4xl font-bold">5. Подготовка к встречам и презентациям</h2>
+                <p class="mt-4 text-2xl">
+                    В диалоге с GPT можно подготовить план или структуру для встреч, презентаций и переговоров:
+                    <ul class="list-disc ml-6 mt-4">
+                        <li>Составление структуры презентации для клиентов или инвесторов.</li>
+                        <li>Генерация списков вопросов для собеседований или встреч.</li>
+                        <li>Формирование тезисов для обсуждения.</li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img src="meeting preparation and presentation structure on a dark blue background.jpeg" alt="Слайд 5" class="object-cover w-full h-full">
+        </div>
+    </div>
+</section>
+
+<hr class="border-t border-gray-700">
+
+<section id="slide9">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                
+                <h2 class="text-4xl font-bold">6. Анализ и резюмирование текстов</h2>
+                <p class="mt-4 text-2xl">
+                    GPT может анализировать или резюмировать большие объемы текста:
+                    <ul class="list-disc ml-6 mt-4">
+                        <li>Составление краткого содержания документов, статей или отчетов.</li>
+                        <li>Помощь в анализе данных, полученных из текстов.</li>
+                        <li>Формулировка выводов и ключевых моментов.</li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img src="text analysis and summarization on a dark blue background.jpeg" alt="Слайд 6" class="object-cover w-full h-full">
+        </div>
+    </div>
+</section>
+
+<hr class="border-t border-gray-700">
+
+<section id="slide10">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                
+                <h2 class="text-4xl font-bold">7. Создание предложений и коммерческих писем</h2>
+                <p class="mt-4 text-2xl">
+                    GPT может составить эффективные и структурированные предложения для партнеров, клиентов или поставщиков:
+                    <ul class="list-disc ml-6 mt-4">
+                        <li>Подготовка шаблонов коммерческих предложений.</li>
+                        <li>Написание официальных писем или ответов.</li>
+                        <li>Формулировка деловых предложений и презентаций.</li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img src="business proposals and commercial letters on a dark blue background.jpeg" alt="Слайд 7" class="object-cover w-full h-full">
+        </div>
+    </div>
+</section>
+
+<hr class="border-t border-gray-700">
+
+<section id="slide11">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                
+                <h2 class="text-4xl font-bold">8. Творческие задачи и мозговой штурм</h2>
+                <p class="mt-4 text-2xl">
+                    GPT можно использовать для проведения мозгового штурма в реальном времени:
+                    <ul class="list-disc ml-6 mt-4">
+                        <li>Генерация идей для новых продуктов и услуг.</li>
+                        <li>Разработка стратегий роста или новых бизнес-направлений.</li>
+                        <li>Предложения по улучшению процессов внутри компании.</li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img src="creative brainstorming and idea generation on a dark blue background.jpeg" alt="Слайд 8" class="object-cover w-full h-full">
+        </div>
+    </div>
+</section>
+
+<hr class="border-t border-gray-700">
+
+<section id="slide12">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                
+                <h2 class="text-4xl font-bold">9. Создание и корректировка плана проекта</h2>
+                <p class="mt-4 text-2xl">
+                    GPT может помочь создать структуру и планировать проект:
+                    <ul class="list-disc ml-6 mt-4">
+                        <li>Подготовка плана этапов проекта.</li>
+                        <li>Помощь в распределении задач между участниками команды.</li>
+                        <li>Оценка временных рамок выполнения задач.</li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img src="project planning and structuring on a dark blue background.jpeg" alt="Слайд 9" class="object-cover w-full h-full">
+        </div>
+    </div>
+</section>
+
+<hr class="border-t border-gray-700">
+
+<section id="slide13">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                
+                <h2 class="text-4xl font-bold">10. Советы по улучшению клиентского сервиса</h2>
+                <p class="mt-4 text-2xl">
+                    В диалоге GPT можно получить советы по улучшению клиентского обслуживания:
+                    <ul class="list-disc ml-6 mt-4">
+                        <li>Предложения по улучшению процессов взаимодействия с клиентами.</li>
+                        <li>Идеи для внедрения новых подходов в сервисе.</li>
+                        <li>Советы по повышению лояльности клиентов.</li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img src="customer service improvement suggestions on a dark blue background.jpeg" alt="Слайд 10" class="object-cover w-full h-full">
+        </div>
+    </div>
+</section>
+
+<hr class="border-t border-gray-700">
+
+<section id="slide14">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                
+                <h2 class="text-4xl font-bold">11. Подготовка HR-материалов</h2>
+                <p class="mt-4 text-2xl">
+                    GPT может помочь подготовить материалы для HR и управления персоналом:
+                    <ul class="list-disc ml-6 mt-4">
+                        <li>Создание описаний вакансий и объявлений о приеме на работу.</li>
+                        <li>Разработка стандартов общения с кандидатами.</li>
+                        <li>Формулировка внутренних инструкций для сотрудников.</li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img src="HR materials preparation and candidate communication on a dark blue background.jpeg" alt="Слайд 11" class="object-cover w-full h-full">
+        </div>
+    </div>
+</section>
+
+<hr class="border-t border-gray-700">
+
+<section id="slide15">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                
+                <h2 class="text-4xl font-bold">12. Анализ конкурентов</h2>
+                <p class="mt-4 text-2xl">
+                    В диалоге GPT можно провести поверхностный анализ конкурентов:
+                    <ul class="list-disc ml-6 mt-4">
+                        <li>Сбор информации о конкурентах на основе открытых данных.</li>
+                        <li>Анализ их сильных и слабых сторон.</li>
+                        <li>Разработка стратегии для превосходства над конкурентами.</li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img src="competitor analysis strategies on a dark blue background.jpeg" alt="Слайд 12" class="object-cover w-full h-full">
+        </div>
+    </div>
+</section>
+
+<hr class="border-t border-gray-700">
+
+
+
+
+
+
+
+
+
+<section id="slide16">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                <h1 class="text-5xl font-bold">Используемая терминология</h1>
+                <p class="mt-4 text-2xl">
+                    Для эффективного взаимодействия с GPT важно понимать несколько ключевых терминов, которые помогут лучше ориентироваться в работе с этой технологией.
+                    <br><br>
+                    <strong>Сессия</strong> — это один диалог с GPT. В ходе сессии модель «запоминает» предыдущие сообщения и учитывает их при формировании последующих ответов. Однако важно помнить, что у каждой сессии есть ограничение на длину контекста.
+                    <br><br>
+                    <strong>Контекст</strong> — это совокупность всех данных и информации, предоставленных в сессии. GPT ориентируется на контекст, чтобы поддерживать последовательность диалога. Чем больше данных о ситуации или задаче вы дадите, тем точнее будет ответ.
+                </p>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img src="terminology withot text on a dark blue background.jpeg" alt="Слайд 16" class="object-cover w-full h-full">
+        </div>
+    </div>
+</section>
+
+<hr class="border-t border-gray-700">
+
+
+
+
+
+
+<section id="slide17">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                <p class="mt-4 text-2xl">
+                    <strong>Промпт</strong> (инструкция) — это ваш запрос или инструкция, которую вы даете GPT. Чем четче и понятнее вы сформулируете запрос, тем лучше GPT выполнит задачу. 
+                    <br><br>
+                    <strong>Когнитивные способности</strong> — это способность GPT рассуждать, анализировать и создавать ответы. Чем сложнее запрос и длиннее контекст, тем больше вычислительных ресурсов требуется для формирования ответа. Для улучшения когнитивных способностей важно ставить точные и конкретные задачи.
+                    <br><br>
+                    <strong>Токены</strong> — это небольшие фрагменты текста (слова, части слов или символы), которые GPT использует для обработки запросов и формирования ответов. GPT ограничен по количеству токенов, которые он может обрабатывать в одной сессии. Это ограничение связано с объемом данных, которые могут быть учтены при создании ответа.
+                </p>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img src="prompt and cognitive abilities in GPT on a dark blue background.jpeg" alt="Слайд 17" class="object-cover w-full h-full">
+        </div>
+    </div>
+</section>
+
+<hr class="border-t border-gray-700">
+
+
+
+
+
+
+
+
+<section id="slide18">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                <h1 class="text-5xl font-bold">Основные принципы и методы работы с GPT</h1>
+                <p class="mt-4 text-2xl">
+                    Чтобы получить от GPT максимально полезный и точный ответ, важно понимать, как правильно строить диалог и ставить задачи. Вот несколько ключевых подходов:
+                    <ul class="list-disc ml-6 mt-4">
+                        <li><strong>Четкость и конкретность:</strong> Формулируйте запросы так, чтобы они были ясными и понятными.</li>
+                        <li><strong>Контекст:</strong> Предоставляйте достаточный контекст, чтобы GPT мог лучше понять вашу задачу.</li>
+                        <li><strong>Итеративный подход:</strong> Используйте итерации, задавая уточняющие вопросы на основе полученных ответов.</li>
+                        <li><strong>Структурированность:</strong> Структурируйте ваши запросы, чтобы GPT мог предоставить более организованный и точный ответ.</li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img src="working principles and methods with GPT on a dark blue background.jpeg" alt="Слайд 18" class="object-cover w-full h-full">
+        </div>
+    </div>
+</section>
+
+<hr class="border-t border-gray-700">
+
+
+
+
+
+
+<section id="slide19">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                <h1 class="text-4xl font-bold">1. Четкое формулирование вопросов</h1>
+                <p class="mt-4 text-2xl">
+                    Чтобы получить максимально точные и полезные ответы от GPT, крайне важно формулировать запросы с ясной целью. Формулировка вопросов должна быть специфичной и конкретной, что позволяет модели быстрее понять, какой именно ответ вам нужен. 
+                    <br><br>
+                    Например, вместо общего вопроса <strong>"Как увеличить продажи?"</strong> лучше задать более детализированный запрос, который указывает на конкретные аспекты или ситуации. Это помогает избежать неопределенности и способствует более точному пониманию ваших потребностей.
+                    <br><br>
+                    <blockquote class="bg-gray-800 p-4 mt-4 rounded">
+                        "Учитывая мою конкретную ситуацию, а также стратегии таких компаний как Twix или DC, такие как сегментирование или сужение целевой аудитории, перечисли все подходящие варианты увеличения продаж в моем интернет-магазине цветов зимой?"
+                    </blockquote>
+                </p>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img src="clear formulation of questions for effective GPT interaction without text on a dark blue background.jpeg" alt="Слайд 19" class="object-cover w-full h-full">
+        </div>
+    </div>
+</section>
+
+<hr class="border-t border-gray-700">
+
+
+
+
+
+
+
+<section id="slide20">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                <h1 class="text-4xl font-bold">2. Использование техники "Роли"</h1>
+                <p class="mt-4 text-2xl">
+                    Присвоение GPT определенной роли позволяет получить ответы в нужном формате и стиле. Это может быть особенно полезно, когда вы хотите получить профессиональные рекомендации или креативные идеи, так как модель будет отвечать с учетом заданной роли. 
+                    <br><br>
+                    Например, вы можете сказать GPT, что он должен выступать в роли маркетолога, что позволит ему сосредоточиться на аспектах, связанных с маркетингом и продажами, и предоставлять более релевантные советы.
+                    <br><br>
+                    <blockquote class="bg-gray-800 p-4 mt-4 rounded">
+                        "Ты — маркетолог с 10-летним опытом. Какие советы ты можешь дать для улучшения нашей стратегии продвижения?"
+                    </blockquote>
+                </p>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img src="had using role on a dark blue background.jpeg" alt="Слайд 20" class="object-cover w-full h-full">
+        </div>
+    </div>
+</section>
+
+<hr class="border-t border-gray-700">
+
+
+
+
+
+
+<section id="slide21">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                <h1 class="text-4xl font-bold">3. Раздельный контекст</h1>
+                <p class="mt-4 text-2xl">
+                    Когда вы работаете над разными темами или задачами, лучше использовать отдельные сессии. Это позволяет избежать смешивания контекстов, что может привести к путанице и непоследовательным ответам. Каждый диалог с GPT должен быть сосредоточен на одной теме, что помогает модели лучше понимать и обрабатывать информацию, обеспечивая более качественные ответы.
+                    <br><br>
+                    <blockquote class="bg-gray-800 p-4 mt-4 rounded">Каждый раз кликайте на кнопку “новый чат”, если собираетесь сменить тему.</blockquote>
+                </p>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img src="separate context for effective GPT interaction on a dark blue background.jpeg" alt="Слайд 21" class="object-cover w-full h-full">
+        </div>
+    </div>
+</section>
+
+<hr class="border-t border-gray-700">
+
+
+
+
+
+<section id="slide22">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                <h1 class="text-4xl font-bold">4. Декомпозиция задачи (Chain of Prompts)</h1>
+                <p class="mt-4 text-2xl">
+                    Сложные задачи зачастую требуют детального подхода. Разбив задачу на более простые шаги, вы можете направить GPT на проработку каждой составляющей отдельно. Это позволяет более эффективно анализировать ситуацию и находить оптимальные решения на каждом этапе, улучшая качество ответов модели. 
+                    <br><br>
+                    Например, вместо того чтобы пытаться охватить всю задачу сразу, вы можете сначала определить цели, затем выбрать подходящие методы и, наконец, составить план реализации.
+                    <br><br>
+                    <blockquote class="bg-gray-800 p-4 mt-4 rounded">
+                        "Какой маркетинговый план предложить для запуска нового продукта?" → "Теперь конкретизируй шаги для первой недели запуска."
+                    </blockquote>
+                </p>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img src="shine chain on a dark blue background.jpeg" alt="Слайд 22" class="object-cover w-full h-full">
+        </div>
+    </div>
+</section>
+
+<hr class="border-t border-gray-700">
+
+
+
+
+
+
+<section id="slide23">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                <h1 class="text-4xl font-bold">5. Загрузите контекст</h1>
+                <p class="mt-4 text-2xl">
+                    GPT не всегда обладает встроенными знаниями о вашей конкретной ситуации, поэтому предоставление подробного контекста может значительно повысить качество ответов. Чем больше информации вы предоставите о задаче, тем более релевантные и точные ответы вы получите. 
+                    <br><br>
+                    Это может включать в себя описание вашей компании, целевой аудитории, существующих проблем или любых других факторов, которые могут повлиять на результаты.
+                    <br><br>
+                    <blockquote class="bg-gray-800 p-4 mt-4 rounded">
+                        "Вот текст эксперта по финансовому анализу. Помоги на его основе написать статью для блога."
+                    </blockquote>
+                </p>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img src="uploading context for better GPT responses on a dark blue background.jpeg" alt="Слайд 23" class="object-cover w-full h-full">
+        </div>
+    </div>
+</section>
+
+<hr class="border-t border-gray-700">
+
+
+
+
+
+
+<section id="slide24">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                <h1 class="text-4xl font-bold">6. Упоминание контекста</h1>
+                <p class="mt-4 text-2xl">
+                    Вы можете использовать ключевые слова или термины для сжатия контекста и упрощения запроса. Это позволяет модели быстрее адаптироваться к вашему запросу и предоставлять более релевантные ответы. 
+                    <br><br>
+                    Например, если вы упоминаете конкретную книгу или теорию, GPT будет учитывать это в своих выводах, что помогает ему лучше понять направление вашего запроса.
+                    <br><br>
+                    <blockquote class="bg-gray-800 p-4 mt-4 rounded">
+                        "Ответь в контексте книги Насима Талеба «Антихрупкость»."
+                    </blockquote>
+                </p>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img src="the modern book on a dark blue background.jpeg" alt="Слайд 24" class="object-cover w-full h-full">
+        </div>
+    </div>
+</section>
+
+<hr class="border-t border-gray-700">
+
+
+
+
+
+<section id="slide25">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                <h1 class="text-4xl font-bold">7. Вопросы на уровне "почему" и "как"</h1>
+                <p class="mt-4 text-2xl">
+                    Задавая вопросы, которые глубже исследуют причины и механизмы, вы можете получить более значимые и обоснованные ответы от GPT. Такие вопросы помогают не только выявить основную проблему, но и понять, какие действия могут привести к улучшению ситуации. 
+                    <br><br>
+                    Формулировка вопросов на уровне "почему" помогает вам разобраться в корнях проблемы, в то время как вопросы на уровне "как" подсказывают практические шаги для решения.
+                    <br><br>
+                    <blockquote class="bg-gray-800 p-4 mt-4 rounded">
+                        “Почему текущая стратегия не работает и как мы можем это исправить?”
+                    </blockquote>
+                </p>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img src="question mark in deep whater on a dark blue background.jpeg" alt="Слайд 25" class="object-cover w-full h-full">
+        </div>
+    </div>
+</section>
+
+<hr class="border-t border-gray-700">
+
+
+
+
+
+<section id="slide26">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                <h1 class="text-4xl font-bold">8. Моделирование мышления GPT</h1>
+                <p class="mt-4 text-2xl">
+                    Чтобы получить более детализированные и структурированные ответы, полезно попросить GPT мыслить пошагово. Это позволяет вам получить более глубокое понимание проблемы и видеть, как модель подходит к решению. 
+                    <br><br>
+                    Запрашивая пошаговый анализ, вы можете извлечь больше информации и выявить все важные аспекты задачи, что способствует принятию более обоснованных решений.
+                    <br><br>
+                    <blockquote class="bg-gray-800 p-4 mt-4 rounded">
+                        "Реши задачу пошагово, начиная с анализа и заканчивая выводами."
+                    </blockquote>
+                </p>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img src="step-by-step analysis for problem solving on a dark blue background.jpeg" alt="Слайд 26" class="object-cover w-full h-full">
+        </div>
+    </div>
+</section>
+
+<hr class="border-t border-gray-700">
+
+
+
+
+
+
+
+<section id="slide27">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                <h1 class="text-4xl font-bold">9. Фокусировка когнитивных способностей</h1>
+                <p class="mt-4 text-2xl">
+                    Чем короче и конкретнее ваши запросы, тем больше когнитивных ресурсов GPT может использовать для формирования ответов. Это позволяет модели сосредоточиться на конкретной задаче и выдавать более качественные и точные результаты. 
+                    <br><br>
+                    Краткие и ясные вопросы облегчают понимание вашей цели, что помогает ускорить процесс получения нужной информации.
+                    <br><br>
+                    <blockquote class="bg-gray-800 p-4 mt-4 rounded">
+                        "Дай три коротких совета по улучшению нашего контента в социальных сетях."
+                    </blockquote>
+                </p>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img src="focusing a beam through a magnifying glass on a dark blue background.jpeg" alt="Слайд 27" class="object-cover w-full h-full">
+        </div>
+    </div>
+</section>
+
+<hr class="border-t border-gray-700">
+
+
+
+
+
+
+
+<section id="slide28">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                <h1 class="text-4xl font-bold">10. Эмоциональный тон</h1>
+                <p class="mt-4 text-2xl">
+                    Если для вас важен эмоциональный оттенок ответа, укажите, какой именно тон должен быть передан. Это может касаться стиля написания или настроения текста, что особенно актуально для креативных проектов. 
+                    <br><br>
+                    Уточнение эмоционального контекста может значительно улучшить качество ответа и сделать его более подходящим для вашей аудитории.
+                    <br><br>
+                    <blockquote class="bg-gray-800 p-4 mt-4 rounded">
+                        "Напиши вдохновляющий текст для мотивационного выступления."
+                    </blockquote>
+                </p>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img src="emoji collection on a dark blue background.jpeg" alt="Слайд 28" class="object-cover w-full h-full">
+        </div>
+    </div>
+</section>
+
+<hr class="border-t border-gray-700">
+
+
+
+
+
+
+<section id="slide29">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                <h1 class="text-4xl font-bold">11. Выделение ключевых частей запроса</h1>
+                <p class="mt-4 text-2xl">
+                    Когда вы формулируете запрос к GPT, выделение ключевых частей может существенно повлиять на качество и точность получаемого ответа. Это особенно важно в ситуациях, когда запрос содержит несколько аспектов, и вы хотите, чтобы модель сосредоточилась на наиболее значимых из них. 
+                    <br><br>
+                    Выделение помогает модели понять, какие элементы запроса требуют особого внимания и углубленного анализа.
+                    <br><br>
+                    <blockquote class="bg-gray-800 p-4 mt-4 rounded">
+                        “Мне нужно, чтобы ты сосредоточился на преимуществах и недостатках нашего нового продукта, а также на его конкурентных преимуществах”.
+                    </blockquote>
+                </p>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img src="marking parts on paper on a dark blue background.jpeg" alt="Слайд 29" class="object-cover w-full h-full">
+        </div>
+    </div>
+</section>
+
+<hr class="border-t border-gray-700">
+
+
+
+
+
+
+
+<section id="slide30">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                <h1 class="text-4xl font-bold">12. Использование GPT для мозгового штурма</h1>
+                <p class="mt-4 text-2xl">
+                    GPT может выступать в роли партнера по мозговому штурму, помогая генерировать идеи и находить нестандартные решения. Задавая открытые вопросы, вы можете получить множество креативных и неожиданных предложений, которые затем можно отфильтровать и адаптировать под ваши нужды. 
+                    <br><br>
+                    Это особенно полезно в ситуациях, когда требуется свежий взгляд на проблему.
+                    <br><br>
+                    <blockquote class="bg-gray-800 p-4 mt-4 rounded">
+                        "Какие нестандартные способы можно использовать для привлечения клиентов в интернет-магазин?" 
+                        Продолжайте задавать открытые вопросы, "А если...".
+                    </blockquote>
+                </p>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img src="creative brainstorming session with ideas on a dark blue background.jpeg" alt="Слайд 30" class="object-cover w-full h-full">
+        </div>
+    </div>
+</section>
+
+<hr class="border-t border-gray-700">
+
+
+
+
+
+
+
+
+<section id="slide31">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                <h1 class="text-4xl font-bold">13. Рефрейминг вопросов</h1>
+                <p class="mt-4 text-2xl">
+                    Переформулировка вопроса может помочь получить более точный и полезный ответ. Если вы не удовлетворены первым результатом, не стесняйтесь уточнять или изменять запрос. Это может значительно повлиять на качество ответа, так как разные формулировки могут вызывать разные ассоциации и понимания у модели.
+                    <br><br>
+                    <blockquote class="bg-gray-800 p-4 mt-4 rounded">
+                        Вместо:
+                        "Как провести анализ конкурентов?" 
+                    </blockquote>
+                    <blockquote class="bg-gray-800 p-4 mt-4 rounded">
+                        Лучше:
+                        "Какие шаги нужно предпринять для глубокого анализа конкурентов?" 
+                    </blockquote>
+                </p>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img src="question reframing concept with a creative twist on a dark blue background.jpeg" alt="Слайд 31" class="object-cover w-full h-full">
+        </div>
+    </div>
+</section>
+
+<hr class="border-t border-gray-700">
+
+
+
+
+
+
+<section id="slide32">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                <h1 class="text-4xl font-bold">14. Использование нестандартных форматов текста (PPTX, HTML, SBO и другие)</h1>
+                <p class="mt-4 text-2xl">
+                    Применение различных форматов текста, таких как презентации (PPTX), веб-страницы (HTML) или специализированные файлы (SBO), позволяет представить информацию в удобном для конкретных задач формате. Это особенно полезно для визуализации данных, создания отчетов или представления материалов в структурированной и наглядной форме, а также для взаимодействия с различными системами. 
+                    <br><br>
+                    <blockquote class="bg-gray-800 p-4 mt-4 rounded">
+                        Например, если вам нужно подготовить презентацию по проекту, вы можете попросить модель создать файл в формате PPTX с развернутыми слайдами или сформировать HTML-страницу с интерактивными элементами.
+                    </blockquote>
+                </p>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img src="bubbles of format icons on a blue background.jpeg" alt="Слайд 32" class="object-cover w-full h-full">
+        </div>
+    </div>
+</section>
+
+<hr class="border-t border-gray-700">
+
+<section id="slide33">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                <h1 class="text-4xl font-bold">15. Сравнительный анализ</h1>
+                <p class="mt-4 text-2xl">
+                    Если вам нужно понять плюсы и минусы различных подходов, попросите GPT провести сравнительный анализ. Это поможет вам взвесить различные варианты и выбрать наиболее подходящий. Сравнительный анализ может дать более сбалансированное представление о ситуации и помочь вам принять более обоснованные решения.
+                    <br><br>
+                    <blockquote class="bg-gray-800 p-4 mt-4 rounded">
+                        "Сравни преимущества и недостатки использования SEO и платной рекламы для интернет-магазина."
+                    </blockquote>
+                </p>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img src="comparative analysis between SEO and paid advertising on a light blue background.jpeg" alt="Слайд 33" class="object-cover w-full h-full">
+        </div>
+    </div>
+</section>
+
+<hr class="border-t border-gray-700">
+
+<section id="slide34">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                <h1 class="text-4xl font-bold">16. Перехват инициативы</h1>
+                <p class="mt-4 text-2xl">
+                    Когда вы не знаете, с чего начать решение проблемы или задачи, полезно позволить GPT задать уточняющие вопросы. Это не только облегчает процесс, но и позволяет модели лучше понять ваши потребности. Вы можете начать диалог с фразы, которая дает модели возможность самостоятельно сформулировать дополнительные вопросы, что может помочь прояснить ситуацию и углубить обсуждение.
+                    <br><br>
+                    <blockquote class="bg-gray-800 p-4 mt-4 rounded">
+                        "Можешь задать уточняющие вопросы, чтобы лучше понять задачу?"
+                    </blockquote>
+                </p>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img src="initiate dialogue with chat bubbles without text on a dark background.jpeg" alt="Слайд 34" class="object-cover w-full h-full">
+        </div>
+    </div>
+</section>
+
+<hr class="border-t border-gray-700">
+
+<section id="slide35">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                <h1 class="text-4xl font-bold">17. Прототипирование и тестирование гипотез</h1>
+                <p class="mt-4 text-2xl">
+                    GPT может помочь вам быстро протестировать гипотезы в разных областях. Вы можете предложить гипотезу и попросить модель разработать примеры ее применения или проанализировать возможные результаты. Это позволяет вам увидеть, как различные решения могут повлиять на ваш бизнес или проект.
+                    <br><br>
+                    <blockquote class="bg-gray-800 p-4 mt-4 rounded">
+                        "Что произойдет, если мы предложим бесплатную доставку на месяц?"
+                    </blockquote>
+                </p>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img src="testing mechanism prototyping concept on a light background.jpeg" alt="Слайд 35" class="object-cover w-full h-full">
+        </div>
+    </div>
+</section>
+
+<hr class="border-t border-gray-700">
+
+<section id="slide36">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                <h1 class="text-4xl font-bold">18. Анализ противоположных точек зрения</h1>
+                <p class="mt-4 text-2xl">
+                    Рассмотрение различных мнений и позиций может помочь вам глубже понять проблему. Это важно для принятия обоснованных решений и предвосхищения возможных вопросов или возражений. Запрашивая противоположные точки зрения, вы можете выявить сильные и слабые стороны ваших предложений или идей.
+                    <br><br>
+                    <blockquote class="bg-gray-800 p-4 mt-4 rounded">
+                        "Назови аргументы за и против открытия нового офиса в другом городе."
+                    </blockquote>
+                </p>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img src="opposite viewpoints analysis (eye) on a dark background.jpeg" alt="Слайд 36" class="object-cover w-full h-full">
+        </div>
+    </div>
+</section>
+
+<hr class="border-t border-gray-700">
+
+<section id="slide37">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                <h1 class="text-4xl font-bold">19. Запрашивание различных вариантов ответов</h1>
+                <p class="mt-4 text-2xl">
+                    Когда вы обращаетесь к GPT, полезно просить модель предоставить несколько вариантов ответа на ваш запрос. Это позволяет получить более разнообразные идеи и решения, а также углубляет ваше понимание темы. Запрашивание различных вариантов помогает избежать узкого мышления и открывает новые перспективы, которые вы могли бы не рассмотреть ранее.
+                    <br><br>
+                    <blockquote class="bg-gray-800 p-4 mt-4 rounded">
+                        “Предложи несколько креативных идей для рекламной кампании, направленной на молодежную аудиторию.”
+                    </blockquote>
+                </p>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img src="multiple response options for marketing campaign ideas on a light background.jpeg" alt="Слайд 37" class="object-cover w-full h-full">
+        </div>
+    </div>
+</section>
+
+<hr class="border-t border-gray-700">
+
+<section id="slide38">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                <h1 class="text-4xl font-bold">20. Моделирование диалогов</h1>
+                <p class="mt-4 text-2xl">
+                    Для подготовки к переговорам или сложным разговорам используйте GPT для моделирования диалогов. Это позволит вам отработать различные сценарии и реакции, что поможет вам лучше подготовиться к реальному взаимодействию. Модель может предложить варианты диалогов, что поможет вам рассмотреть разные подходы к общению.
+                    <br><br>
+                    <blockquote class="bg-gray-800 p-4 mt-4 rounded">
+                        "Смоделируй разговор с недовольным клиентом и предложи варианты решения его проблемы."
+                    </blockquote>
+                </p>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img src="dialogue modeling for customer negotiation scenario on a dark background.jpeg" alt="Слайд 38" class="object-cover w-full h-full">
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+<section id="slide39">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                <h1 class="text-5xl font-bold">Ограничения GPT</h1>
+                <p class="mt-4 text-2xl">
+                    Несмотря на все возможности, GPT имеет ряд ограничений, которые важно учитывать при взаимодействии:
+                </p>
+                <ul class="list-disc list-inside mt-4">
+                    <li><strong>Ограничение на длину контекста:</strong> GPT способен обрабатывать ограниченное количество токенов (текстовых фрагментов) в рамках одной сессии. Когда лимит исчерпан, модель "забывает" начало диалога. Это особенно важно учитывать при длительных сессиях или задачах, требующих большого объема данных.</li>
+                    <li><strong>Ограниченные знания о мире:</strong> GPT обучен на данных, доступных до определенного времени. Поэтому он может не знать о последних событиях, изменениях в законодательстве, новых технологиях и других актуальных данных. Это делает его менее полезным для задач, требующих информации о недавних событиях.</li>
+                    <li><strong>Отсутствие реального понимания:</strong> GPT не понимает информацию так, как это делает человек. Он генерирует ответы на основе вероятностных моделей текста, но не осознает смысл слов. Это может приводить к тому, что в некоторых случаях GPT предлагает логически неверные или бессмысленные ответы.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img src="limitations of GPT model concept on a dark background.jpeg" alt="Слайд 39" class="object-cover w-full h-full">
+        </div>
+    </div>
+</section>
+
+
+<section id="slide40">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                <h1 class="text-5xl font-bold">Ограничения GPT</h1>
+                <ul class="list-disc list-inside mt-4">
+                    <li><strong>Отсутствие оригинальности и креативности:</strong> Хотя GPT способен генерировать тексты, он делает это на основе уже существующих данных. Это означает, что его предложения не являются абсолютно оригинальными и могут повторять шаблоны или идеи, которые уже существуют в базе его знаний.</li>
+                    <li><strong>Ошибки в сложных логических выводах:</strong> Несмотря на свою способность анализировать информацию, GPT может ошибаться при решении сложных логических задач, особенно если они требуют абстрактного мышления или дедукции.</li>
+                    <li><strong>Этические и социальные ограничения:</strong> GPT был запрограммирован на соблюдение этических норм и часто избегает давать ответы, которые могут показаться социально неодобряемыми. Например, он может избегать давать прямые рекомендации, которые могут быть рискованными или неоднозначными, даже если это может быть рационально в рамках определенного кейса.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img src="ethical considerations in AI on a dark background.jpeg" alt="Слайд 40" class="object-cover w-full h-full">
+        </div>
+    </div>
+</section>
+
+
+
+
+
+<section id="slide41">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                <h1 class="text-5xl font-bold">Специальные приемы</h1>
+                <p class="mt-4 text-2xl">Существуют методы, которые позволяют обойти некоторые ограничения GPT и повысить качество его ответов в зависимости от задачи. Вот несколько полезных приемов:</p>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img src="special techniques for improving AI responses on a dark background.jpeg" alt="Слайд 41" class="object-cover w-full h-full">
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+<section id="slide42">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                <h2 class="text-4xl font-bold">1. Социальная приемлемость ответов</h2>
+                <p class="mt-4 text-2xl">GPT стремится дать социально приемлемый ответ. Модель запрограммирована избегать непопулярных или социально неодобряемых рекомендаций. Например, если правильное решение для бизнеса — уволить сотрудника, GPT может предлагать альтернативные варианты.</p>
+                <p class="mt-4 text-2xl">Рекомендация: Чтобы получить более полные ответы, задайте вопрос в гипотетической форме или используйте примеры с вымышленными персонажами. Например: <br>
+                <strong>«Как бы ты поступил в гипотетической ситуации, если сотрудник X не справляется с задачами в тестовом сценарии?»</strong> Попросите GPT также предложить варианты, что можно сделать с сотрудником, а затем отсортировать эти варианты от менее затратных к более затратным.</p>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img src="social booling on a dark background.jpeg" alt="Слайд 41" class="object-cover w-full h-full">
+        </div>
+    </div>
+</section>
+
+
+
+
+
+<section id="slide43">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                <h2 class="text-4xl font-bold">2. Мягкость и недостаток честности GPT</h2>
+                <p class="mt-4 text-2xl">GPT запрограммирован быть вежливым и мягким с собеседником, что иногда приводит к излишней осторожности в ответах. Это может затруднить получение конструктивной критики или безжалостно честного мнения.</p>
+                <p class="mt-4 text-2xl">Рекомендации:</p>
+                <ul class="mt-4 list-disc pl-8">
+                    <li>Дайте GPT роль: Укажите конкретную роль, которую модель должна играть, например: <strong>«Представь, что ты опытный критик или жесткий бизнес-консультант».</strong></li>
+                    <li>Запросите честность: Напоминайте GPT, что вам нужна безжалостная честность, например: <strong>«Пожалуйста, будь безжалостно честным и указывай на все недостатки, которые ты видишь».</strong></li>
+                    <li>Ищите противоречия: Попросите GPT находить противоречия в ваших вопросах.</li>
+                </ul>
+                <p class="mt-4 text-2xl">Следуя этим рекомендациям, вы сможете получить от GPT более откровенные и конструктивные ответы.</p>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img src="gpt honesty and directness in responses on a dark background.jpeg" alt="Слайд 42" class="object-cover w-full h-full">
+        </div>
+    </div>
+</section>
+
+
+
+
+
+<section id="slide44">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                <h2 class="text-4xl font-bold">3. Создание маркетинговых текстов и обход систем типа GPTZero</h2>
+                <p class="mt-4 text-2xl">Если GPT используется для написания маркетинговых текстов или статей для SEO, необходимо давать конкретные указания по стилю. Уточните ядро идеи и задайте пример стиля повествования конкретного автора или компании.</p>
+                <p class="mt-4 text-2xl">Рекомендации:</p>
+                <ul class="mt-4 list-disc pl-8">
+                    <li>Используйте метод PASTOR для создания текстов.</li>
+                    <li>Попросите GPT не использовать ассоциации первого уровня и избегать 20% самых часто употребляемых прилагательных.</li>
+                </ul>
+                <p class="mt-4 text-2xl">Эти меры помогут избежать шаблонных фраз и сделают тексты более оригинальными.</p>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img src="way to bot evolves into human on a dark background.jpeg" alt="Слайд 43" class="object-cover w-full h-full">
+        </div>
+    </div>
+</section>
+
+
+
+
+
+<section id="slide45">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                <h2 class="text-4xl font-bold">Итоговые рекомендации</h2>
+                <p class="mt-4 text-2xl">Используйте перечисленные методы и рекомендации, чтобы повысить качество ответов от GPT и адаптировать их под свои задачи. Экспериментируйте с формулировками и структурами запросов, чтобы извлечь максимальную пользу из взаимодействия с моделью.</p>
+                <p class="mt-4 text-2xl">Ваша способность задавать правильные вопросы и формулировать запросы играет ключевую роль в получении ценной информации и решений.</p>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img src="rocket on a dark background.jpeg" alt="Слайд 44" class="object-cover w-full h-full">
+        </div>
+    </div>
+</section>
+
+
+
+
+<section id="slide46">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                <h1 class="text-5xl font-bold">Неожиданные возможности</h1>
+                <br>
+                <h2 class="text-4xl mt-4 font-bold">1. Рефлексия по видео</h2>
+                <p class="mt-4 text-2xl">Этот метод позволяет усилить эффект от бизнес-видео. Вы можете извлечь ценную информацию из просмотренных материалов, преобразовав видео в текст и проработать его с помощью GPT.</p>
+                <p class="mt-4 text-2xl"><strong>Шаги:</strong></p>
+                <ul class="mt-4 list-disc pl-8">
+                    <li>Выберите интересное видео на YouTube.</li>
+                    <li>Используйте сервис <a href="https://anthiago.com" class="text-blue-300 underline">anthiago.com</a> для транскрибирования видео в текст.</li>
+                    <li>Сообщите GPT, что вы собираетесь загрузить текст, и попросите его подождать.</li>
+                    <li>Разбейте текст на части и отправьте их по очереди в диалоговое окно.</li>
+                    <li>Дайте GPT роль: <strong>«Выступи в роли ментора и помоги упаковать мое предложение в сильное формулировку».</strong></li>
+                </ul>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img src="reflection on video content and GPT assistance on a dark background.jpeg" alt="Слайд 44" class="object-cover w-full h-full">
+        </div>
+    </div>
+</section>
+
+
+
+
+<section id="slide47">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                <h2 class="text-4xl mt-4 font-bold">2. Кастдев по офферу</h2>
+                <p class="mt-4 text-2xl">Опишите свой продукт или услугу и спросите GPT, как он понимает ваше предложение. Это поможет вам проверить, насколько оно понятно клиентам.</p>
+                <p class="mt-4 text-2xl"><strong>Шаги:</strong></p>
+                <ul class="mt-4 list-disc pl-8">
+                    <li>Опишите свой продукт или услугу.</li>
+                    <li>Спросите GPT, как он понимает ваше предложение.</li>
+                    <li>Попросите GPT раскритиковать ваш оффер.</li>
+                    <li>Сыграйте в игру, где вы должны убедить GPT, что ваше предложение хорошее.</li>
+                    <li>Проанализируйте выводы о недостатках и преимуществах вашего предложения, а также о целевой аудитории и ее возражениях.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img src="castdev for offer analysis with GPT assistance on a dark background.jpeg" alt="Слайд 45" class="object-cover w-full h-full">
+        </div>
+    </div>
+</section>
+
+
+
+
+<section id="slide48">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                <h2 class="text-4xl mt-4 font-bold">3. Выявление глубинных страхов и потребностей клиентов</h2>
+                <p class="mt-4 text-2xl">Для успешной продажи важно закрывать ключевые потребности и страхи клиентов в правильном порядке. Соберите ключевые запросы ваших клиентов и попросите GPT проанализировать их.</p>
+                <p class="mt-4 text-2xl"><strong>Шаги:</strong></p>
+                <ul class="mt-4 list-disc pl-8">
+                    <li>Перейдите на <a href="https://wordstat.yandex.ru" class="text-blue-300 underline">wordstat.yandex.ru</a> и введите обобщенный запрос по вашей нише.</li>
+                    <li>Скопируйте 5 самых популярных запросов.</li>
+                    <li>Нажимайте на запросы, получая уточненные списки, повторяя процесс на 4-5 уровнях.</li>
+                    <li>Попросите GPT проанализировать эти запросы для понимания страхов и потребностей аудитории.</li>
+                    <li>Используйте полученные данные для формирования контента.</li>
+                </ul>
+                <p class="mt-4 text-2xl">Как бонус, спросите GPT, какие ситуации или этапы переживает клиент.</p>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img src="understanding clients fears and needs with GPT analysis on a dark background.jpeg" alt="Слайд 46" class="object-cover w-full h-full">
+        </div>
+    </div>
+</section>
+
+
+
+
+
+<section id="slide49">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                <h2 class="text-4xl mt-4 font-bold">4. Создание контент-планов по запросам из Вордстата</h2>
+                <p class="mt-4 text-2xl">Мы часто хотим получить качественный контент на месяцы вперед. Однако одних поисковых запросов недостаточно для создания креативного контент-плана.</p>
+                <p class="mt-4 text-2xl"><strong>Шаги:</strong></p>
+                <ul class="mt-4 list-disc pl-8">
+                    <li>Запишите 12-20 ключевых идей, которые хотите продвигать.</li>
+                    <li>Кратко опишите каждую идею в 4-5 предложениях.</li>
+                    <li>Внесите идеи в столбик таблицы, а в строку добавьте потребности и запросы клиентов.</li>
+                    <li>Попросите GPT создать статью или пост, используя ваши комментарии для раскрытия запроса.</li>
+                    <li>Добавьте актуальные новости как дополнительный элемент контент-плана.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img src="content planning using Wordstat queries with GPT assistance on a dark background.jpeg" alt="Слайд 47" class="object-cover w-full h-full">
+        </div>
+    </div>
+</section>
+
+
+
+
+
+<section id="slide50">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                <h2 class="text-4xl mt-4 font-bold">5. Создание инфографики в HTML</h2>
+                <p class="mt-4 text-2xl">С помощью текста можно создавать все что угодно, включая инфографику. Рассмотрим эту возможность.</p>
+                <p class="mt-4 text-2xl"><strong>Шаги:</strong></p>
+                <ul class="mt-4 list-disc pl-8">
+                    <li>Попросите GPT создать инфографику, подробно описав, как она должна выглядеть (цвета, формы, данные).</li>
+                    <li>В конце добавьте: <strong>«Пожалуйста, дай мне только готовый HTML + CSS документ для копирования».</strong></li>
+                    <li>Скопируйте ответ GPT в текстовый файл, добавив <strong>«.html»</strong> в конце имени.</li>
+                    <li>Откройте файл в браузере, чтобы увидеть результат.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img src="infographics charts on a dark background.jpeg" alt="Слайд 48" class="object-cover w-full h-full">
+        </div>
+    </div>
+</section>
+
+
+
+
+
+<section id="slide51">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                <h2 class="text-4xl mt-4 font-bold">6. Написание технического задания</h2>
+                <p class="mt-4 text-2xl">Иногда мы не знаем, как сформулировать задачи для специалистов. Попросите GPT задавать вам вопросы, пока он не выяснит все детали.</p>
+                <p class="mt-4 text-2xl"><strong>Шаги:</strong></p>
+                <ul class="mt-4 list-disc pl-8">
+                    <li>Попросите GPT задавать вам вопросы о задаче.</li>
+                    <li>Обсуждайте детали, пока не получите ясное описание задания.</li>
+                    <li>Используйте это описание, чтобы эффективно передать задачу специалисту.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img src="writing technical tasks with GPT assistance on a dark background.jpeg" alt="Слайд 49" class="object-cover w-full h-full">
+        </div>
+    </div>
+</section>
+
+
+
+
+<section id="slide52">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                <h2 class="text-4xl mt-4 font-bold">7. Использование профессиональной терминологии</h2>
+                <p class="mt-4 text-2xl">GPT работает на основе многомерной карты слов, где разные термины имеют свои ассоциативные связи. Чтобы получить более точный ответ на специализированные вопросы, задавайте правильные вопросы о терминах.</p>
+                <p class="mt-4 text-2xl"><strong>Шаги:</strong></p>
+                <ul class="mt-4 list-disc pl-8">
+                    <li>Спросите GPT: <strong>«Какой специалист лучше всего подходит для решения задачи X?»</strong></li>
+                    <li>На основе полученных терминов попросите GPT помочь переформулировать ваш запрос.</li>
+                    <li>Используйте полученный запрос для дальнейшей работы с GPT.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img src="using professional terminology with GPT for better results on a dark background.jpeg" alt="Слайд 50" class="object-cover w-full h-full">
+        </div>
+    </div>
+</section>
+
+
+
+
+<section id="slide53">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                <h2 class="text-4xl mt-4 font-bold">Заключение</h2>
+                <p class="mt-4 text-2xl">Используйте перечисленные методы для эффективной работы с GPT. Экспериментируйте с запросами и получайте максимальную пользу от взаимодействия с моделью.</p>
+                <p class="mt-4 text-2xl">Ваша способность задавать правильные вопросы и формулировать запросы имеет решающее значение для достижения успеха.</p>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img src="conclusion for unexpected possibilities with GPT on a dark background.jpeg" alt="Слайд 51" class="object-cover w-full h-full">
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+<section class="promo" id="slide54">
+    <div class="flex h-full">
+        <div class="w-3/5 flex items-center justify-center text-white p-8">
+            <div class="text-blok">
+                <h1 class="text-6xl font-bold">Приглашение</h1>
+                <p class="mt-4 text-2xl">Всё, что мы обсудили в этой статье, — это лишь верхушка айсберга возможностей, которые открывают нейросети. Мы, команда специалистов <strong class="text-blue-300">AI-M.io</strong>, занимаемся автоматизацией бизнеса и разработали собственную IT-систему, использующую взаимодействия различных нейросетей.</p>
+                <p class="mt-4 text-2xl">Чтобы реализовать комплексные решения и максимально использовать возможности умных систем, обращайтесь к нам, и мы с радостью предложим вам индивидуальные решения для вашего успеха в мире технологий!</p>
+                <br>
+                <p class="mt-4 text-2xl"><strong>Запомните промокод <span class="text-blue-300">[[MPROMO]]</span> для получения 5% скидки на первый месяц.</strong></p>
+            </div>
+        </div>
+        <div class="black-area flex items-center justify-center">
+            <img  width="350" src="data:image/png;base64,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" alt="Слайд 48" 
+            class="object-cover"><strong class="text-white text-9xl mt-4 ml-2">.io</strong>
+        </div>
+    </div>
+</section>
+
+<script defer>
+    const promo = new URL(document.location.toString()).searchParams.get("p");
+    const section = document.querySelector('.promo');
+    section.innerHTML = section.innerHTML.split('[[MPROMO]]').join(promo);
+
+    if (!promo) {
+        redirect("Your link is incorrect. You will be redirected!")
+    }
+    if (window.innerWidth < 700) {
+        redirect("Your device screen is too small. You will be redirected!")
+    }
+
+    function redirect(msg){
+        const msgel = document.createElement('div');
+        msgel.innerHTML = `
+        <div style="position: fixed; top: 0; left: 0; background: white; width: 100vw; height: 100vh; font-size: 3rem;">
+        <h1>${msg}</h1>
+        </div>
+        `
+        document.body.appendChild(msgel);
+        setTimeout(()=>{
+            const link = document.createElement('a');
+            link.href = 'https://ai-m.io';
+            document.body.appendChild(link);
+            link.click();
+        },3000)
+    }
+</script>
+
+</body>
+</html>
