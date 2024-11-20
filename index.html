@@ -101,12 +101,12 @@
         let startX = 0;
         let startY = 0;
         // Функция для обработки начала касания
-        card.addEventListener('touchstart', (e) => {
+        document.addEventListener('touchstart', (e) => {
             startX = e.touches[0].clientX;
             startY = e.touches[0].clientY;
         });
         // Функция для обработки окончания касания
-        card.addEventListener('touchend', (e) => {
+        document.addEventListener('touchend', (e) => {
             const endX = e.changedTouches[0].clientX;
             const endY = e.changedTouches[0].clientY;
 
