@@ -97,29 +97,6 @@
 
         goToSlide(-1);
 
-
-        let startX = 0;
-        let startY = 0;
-        // Функция для обработки начала касания
-        document.addEventListener('touchstart', (e) => {
-            startX = e.touches[0].clientX;
-            startY = e.touches[0].clientY;
-        });
-        // Функция для обработки окончания касания
-        document.addEventListener('touchend', (e) => {
-            const endX = e.changedTouches[0].clientX;
-            const endY = e.changedTouches[0].clientY;
-
-            // Вычисляем разницу координат
-            const diffX = endX - startX;
-            const diffY = endY - startY;
-
-            // Проверяем, что свайп был по оси Y
-            if (Math.abs(diffY) > Math.abs(diffX)) {
-                if (diffY > 50) goToSlide(currentSlide+1);
-                if (diffY < -50) goToSlide(currentSlide-1);
-            }
-        });
     </script>
 </head>
 <body>
@@ -1680,7 +1657,36 @@
 
 
 
+</div>
+</body>
 <script defer>
+    let startX = 0;
+    let startY = 0;
+    // Функция для обработки начала касания
+    document.addEventListener('touchstart', (e) => {
+        console.log('!');
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+    });
+    // Функция для обработки окончания касания
+    document.addEventListener('touchend', (e) => {
+        console.log('!!');
+        const endX = e.changedTouches[0].clientX;
+        const endY = e.changedTouches[0].clientY;
+
+        // Вычисляем разницу координат
+        const diffX = endX - startX;
+        const diffY = endY - startY;
+
+        // Проверяем, что свайп был по оси Y
+        if (Math.abs(diffY) > Math.abs(diffX)) {
+            if (diffY > 50) goToSlide(currentSlide-1);
+            if (diffY < -50) goToSlide(currentSlide+1);
+        }
+    });
+
+
+
     const promo = new URL(document.location.toString()).searchParams.get("p");
     const section = document.querySelector('.promo');
     section.innerHTML = section.innerHTML.split('[[MPROMO]]').join(promo);
@@ -1708,6 +1714,4 @@
         },3000)
     }
 </script>
-</div>
-</body>
 </html>
