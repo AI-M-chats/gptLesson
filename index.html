@@ -9,15 +9,22 @@
         body {
             overflow: hidden;
         }
-        .main-container{
-            background-image: url('https://tailwindcss.com/_next/static/media/hero-dark@90.dba36cdf.jpg');
-            position: relative;
-            z-index: 1;
-        }
         section {
             height: 100vh;
             background-attachment: fixed;
             background-size: cover;
+        }
+        li {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+        strong {
+            font-weight: 900;
+        }
+        .main-container{
+            background-image: url('https://tailwindcss.com/_next/static/media/hero-dark@90.dba36cdf.jpg');
+            position: relative;
+            z-index: 1;
         }
         .black-area {
             background-color: black;
@@ -33,47 +40,53 @@
         .toc-li{
             max-height: 75vh;
         }
-        #navigation {
+        #nav{
+            position: relative; 
+            z-index: -9999;
             transition: transform 0.3s;
         }
-        li {
-            font-size: 1.2rem;
-            font-weight: 700;
-        }
-        strong {
-            font-weight: 900;
-        }
         @media (max-width: 768px) {
+            body {
+                overflow: scroll;
+            }
+            section {
+                height: auto;
+            }   
+            li {
+                font-size: 0.92rem;
+                font-weight: 700;
+            }
             .black-area {
                 background-color: black;
-                height: 40vh;
+                height: 30vh;
                 width: 100%;
             } 
             .logo-img{
                 width: 150px;
             }
             .toc-li{
-            max-height: 95vh;
-        }
-            li {
-                font-size: 0.92rem;
-                font-weight: 700;
+                max-height: none;
             }
+            #nav{
+                z-index: 9999;
+            }
+            
         }
     </style>
     <script>
-        let currentSlide = -4;
+        let currentSlide = -2;
         const totalSlides = 55;
 
         function goToSlide(slide) {
-            if (slide < -4) slide = -4;
+            if (slide < -2) slide = -2;
             if (slide > totalSlides) slide = totalSlides;
             const section = document.getElementById(`slide${slide}`);
             if(section) section.scrollIntoView({behavior: 'smooth'});
             else return goToSlide(slide+(currentSlide<slide? 1 : -1));
             currentSlide = slide;
+            const isMobile = window.innerWidth < 1000;
             const nav = document.getElementById("nav");
-            if(nav)nav.style.zIndex = slide < 1? '-9999': '9999';
+            if(nav) nav.style.zIndex = slide < 1 && !isMobile? '-9999': '9999';
         }
 
         document.addEventListener('keydown', function(event) {
@@ -84,7 +97,7 @@
         });
 
         let isThrottled = false;
-        window.addEventListener('wheel', function(event) {
+        if(window.innerWidth > 1000) window.addEventListener('wheel', function(event) {
             if (!isThrottled && event.deltaY > 0) {
                 goToSlide(currentSlide + 1); 
             } 
@@ -94,18 +107,45 @@
             isThrottled = true; 
             setTimeout(() => { isThrottled = false; }, 500);
         });
+        // let startX = 0;
+        // let startY = 0;
+        // // Функция для обработки начала касания
+        // document.addEventListener('touchstart', (e) => {
+        //     console.log('!');
+        //     startX = e.touches[0].clientX;
+        //     startY = e.touches[0].clientY;
+        // });
+        // // Функция для обработки окончания касания
+        // document.addEventListener('touchend', (e) => {
+        //     console.log('!!');
+        //     const endX = e.changedTouches[0].clientX;
+        //     const endY = e.changedTouches[0].clientY;
 
-        goToSlide(-1);
+        //     // Вычисляем разницу координат
+        //     const diffX = endX - startX;
+        //     const diffY = endY - startY;
+
+        //     // Проверяем, что свайп был по оси Y
+        //     if (Math.abs(diffY) > Math.abs(diffX)) {
+        //         if (diffY > 50) goToSlide(currentSlide-1);
+        //         if (diffY < -50) goToSlide(currentSlide+1);
+        //     }
+        // });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            goToSlide(-2);
+            if(window.innerWidth < 1000) document.getElementById('nav-btns').remove();
+        })
 
     </script>
 </head>
 <body>
 
-    <div id="nav" style="position: relative; z-index: -9999">
+    <div id="nav">
 
-        <nav class="w-full md:w-3/5 fixed bottom-0 mb-6 flex justify-between items-center bg-transparent">
+        <nav id="nav-btns" class="w-full md:w-3/5 fixed bottom-0 mb-6 flex justify-between items-center bg-transparent">
             <div class="flex gap-2 items-center mx-auto md:text-xl">
-                <a href="javascript:void(0)" class="bg-black text-white border border-indigo-200 md:border-indigo-900 py-2 px-2 md:px-4 rounded" onclick="goToSlide(-4)">TOC</a>
+                <a href="javascript:void(0)" class="bg-black text-white border border-indigo-200 md:border-indigo-900 py-2 px-2 md:px-4 rounded" onclick="goToSlide(-2)">TOC</a>
                 <a href="javascript:void(0)" class="bg-black text-white border border-indigo-200 md:border-indigo-900 py-2 px-2 md:px-4 rounded" onclick="goToSlide(currentSlide - 2)">▲▲</a>
                 <a href="javascript:void(0)" class="bg-black text-white border border-indigo-200 md:border-indigo-900 py-2 px-2 md:px-4 rounded" onclick="goToSlide(currentSlide - 1)">▲</a>
                 <a href="javascript:void(0)" class="bg-black text-white border border-indigo-200 md:border-indigo-900 py-2 px-2 md:px-4 rounded" onclick="goToSlide(currentSlide + 1)">▼</a>
@@ -113,8 +153,11 @@
                 <a href="javascript:void(0)" class="bg-black text-white border border-indigo-200 md:border-indigo-900 py-2 px-2 md:px-4 rounded" onclick="goToSlide(54)">END</a>
             </div>
         </nav>
-        <div class="md:w-2/5 fixed bottom-60 md:bottom-6 right-0 flex justify-center items-center bg-transparent">
+        <div id="nav-present" class="w-full md:w-2/5 fixed bottom-6 right-0 flex justify-center items-center bg-transparent">
             <a href="javascript:void(0)" class="flex bg-black text-white border-4 border-pink-700 py-2 px-4 rounded mx-1 md:text-2xl font-bold" onclick="goToSlide(55)">Забрать ПОДАРОК!</a>
+        </div>
+        <div id="nav-present" class="w-3/12 fixed bottom-7 right-0 flex justify-center items-center bg-transparent md:hidden">
+            <a href="javascript:void(0)" class="bg-black text-white border border-indigo-200 md:border-indigo-900 py-2 px-3 md:px-4 rounded-full" onclick="goToSlide(-2)">▲</a>
         </div>
     </div>
 
@@ -126,9 +169,8 @@
 <div class="main-container">
     
          
-    
-    <section id="slide-4">
-        <div class="h-full">
+    <section id="slide-2">
+        <div class="md:h-full">
             <div class="flex w-full items-center justify-center text-white p-4">
                 <div class="mx-16">
                     <h1 class="text-5xl font-bold my-4 mb-14 text-center">Оглавление</h1>
@@ -139,49 +181,25 @@
             </div>
         </div>
     </section>
-    <section id="slide-3">
-        <div class="h-full">
-            <div class="flex w-full items-center justify-center text-white p-4">
-                <div class="mx-16">
-                    <h1 class="text-5xl font-bold my-4 mb-14 text-center"></h1>
-                    <p class="mt-4 md:text-2xl">
-                        <ul id="toc-list2" class="flex flex-col gap-x-6 gap-y-4 flex-wrap"></ul>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section id="slide-2">
-        <div class="h-full">
-            <div class="flex w-full items-center justify-center text-white p-4">
-                <div class="mx-16">
-                    <h1 class="text-5xl font-bold my-4 mb-14 text-center"></h1>
-                    <p class="mt-4 md:text-2xl">
-                        <ul id="toc-list3" class="flex flex-col gap-x-6 gap-y-4 flex-wrap"></ul>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
     <section id="slide-1">
-        <div class="h-full">
+        <div class="md:h-full">
             <div class="flex w-full items-center justify-center text-white p-4">
                 <div class="mx-16">
                     <h1 class="text-5xl font-bold my-4 mb-14 text-center"></h1>
                     <p class="mt-4 md:text-2xl">
-                        <ul id="toc-list4" class="flex flex-col gap-x-6 gap-y-4 flex-wrap"></ul>
+                        <ul id="toc-list2" class="flex flex-col gap-x-6 gap-y-4 flex-wrap toc-li"></ul>
                     </p>
                 </div>
             </div>
         </div>
     </section>
     <section id="slide0">
-        <div class="h-full">
+        <div class="md:h-full">
             <div class="flex w-full items-center justify-center text-white p-4">
                 <div class="mx-16">
                     <div class="text-5xl font-bold my-4 mb-24 text-center"></div>
                     <p class="mt-4 md:text-2xl">
-                        <ul id="toc-list5" class="flex flex-col gap-x-6 gap-y-4 flex-wrap"></ul>
+                        <ul id="toc-list3" class="flex flex-col gap-x-6 gap-y-4 flex-wrap toc-li"></ul>
                     </p>
                 </div>
             </div>
@@ -192,8 +210,6 @@
         const tocList1 = document.getElementById('toc-list1');
         const tocList2 = document.getElementById('toc-list2');
         const tocList3 = document.getElementById('toc-list3');
-        const tocList4 = document.getElementById('toc-list4');
-        const tocList5 = document.getElementById('toc-list5');
         const headers = document.querySelectorAll('h1, h2, h3');
         
         headers.forEach((header,i) => {
@@ -211,12 +227,11 @@
                 tocList1.appendChild(listItem);
             }
             else if (window.innerWidth < 1700 && window.innerWidth > 1000){
-                const list = i<45? tocList1: tocList2;
+                const list = i<41? tocList1: i<82? tocList2: tocList3;
                 list.appendChild(listItem);
             }
             else {
-                const list = i<12? tocList1: i<24? tocList2 :  i<36? tocList3 : i<48? tocList4 : tocList5;
-                list.appendChild(listItem);
+                tocList1.appendChild(listItem);
             }
             
         });
@@ -228,10 +243,8 @@
         }
         tocList1.addEventListener('click', to);
         tocList2.addEventListener('click', to);
-        if(window.innerWidth > 1700 || !tocList2.childElementCount) tocList2.closest('section').remove();
-        if(window.innerWidth > 1000 || !tocList3.childElementCount) tocList3.closest('section').remove();
-        if(window.innerWidth > 1000 || !tocList4.childElementCount) tocList4.closest('section').remove();
-        if(window.innerWidth > 1000 || !tocList5.childElementCount) tocList5.closest('section').remove();
+        if(!tocList2.childElementCount) tocList2.closest('section').remove();
+        if(!tocList3.childElementCount) tocList3.closest('section').remove();
     });
 </script>
 
@@ -243,8 +256,8 @@
 
 
 <section id="slide1">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
                 <h1 class="text-2xl md:text-5xl font-bold">Что такое нейросети и GPT</h1>
                 <p class="mt-4 md:text-2xl">
@@ -267,8 +280,8 @@
 
 
 <section id="slide2">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
                 <h1 class="text-2xl md:text-5xl font-bold">Как получить доступ к GPT в России</h1>
                 <p class="mt-4 md:text-2xl">
@@ -293,8 +306,8 @@
 
 
 <section id="slide3">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
                 <h1 class="text-2xl md:text-5xl font-bold">Зачем использовать GPT: задачи для бизнеса </h1>
                 <p class="mt-4 md:text-2xl">
@@ -325,8 +338,8 @@
 
 
 <section id="slide4">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
                 
                 <h2 class="text-xl md:text-4xl font-bold">1. Генерация идей для бизнеса и маркетинга</h2>
@@ -351,8 +364,8 @@
 
 
 <section id="slide5">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
                 
                 <h2 class="text-xl md:text-4xl font-bold">2. Создание контента</h2>
@@ -376,8 +389,8 @@
 <hr class="border-t border-gray-700">
 
 <section id="slide6">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
                 
                 <h2 class="text-xl md:text-4xl font-bold">3. Написание скриптов для продаж</h2>
@@ -400,8 +413,8 @@
 <hr class="border-t border-gray-700">
 
 <section id="slide7">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
                 
                 <h2 class="text-xl md:text-4xl font-bold">4. Создание и оптимизация рекламных объявлений</h2>
@@ -424,8 +437,8 @@
 <hr class="border-t border-gray-700">
 
 <section id="slide8">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
                 
                 <h2 class="text-xl md:text-4xl font-bold">5. Подготовка к встречам и презентациям</h2>
@@ -448,8 +461,8 @@
 <hr class="border-t border-gray-700">
 
 <section id="slide9">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
                 
                 <h2 class="text-xl md:text-4xl font-bold">6. Анализ и резюмирование текстов</h2>
@@ -472,8 +485,8 @@
 <hr class="border-t border-gray-700">
 
 <section id="slide10">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
                 
                 <h2 class="text-xl md:text-4xl font-bold">7. Создание предложений и коммерческих писем</h2>
@@ -496,8 +509,8 @@
 <hr class="border-t border-gray-700">
 
 <section id="slide11">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
                 
                 <h2 class="text-xl md:text-4xl font-bold">8. Творческие задачи и мозговой штурм</h2>
@@ -520,8 +533,8 @@
 <hr class="border-t border-gray-700">
 
 <section id="slide12">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
                 
                 <h2 class="text-xl md:text-4xl font-bold">9. Создание и корректировка плана проекта</h2>
@@ -544,8 +557,8 @@
 <hr class="border-t border-gray-700">
 
 <section id="slide13">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
                 
                 <h2 class="text-xl md:text-4xl font-bold">10. Советы по улучшению клиентского сервиса</h2>
@@ -568,8 +581,8 @@
 <hr class="border-t border-gray-700">
 
 <section id="slide14">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
                 
                 <h2 class="text-xl md:text-4xl font-bold">11. Подготовка HR-материалов</h2>
@@ -592,8 +605,8 @@
 <hr class="border-t border-gray-700">
 
 <section id="slide15">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
                 
                 <h2 class="text-xl md:text-4xl font-bold">12. Анализ конкурентов</h2>
@@ -624,8 +637,8 @@
 
 
 <section id="slide16">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
                 <h1 class="text-2xl md:text-5xl font-bold">Используемая терминология</h1>
                 <p class="mt-4 md:text-2xl">
@@ -651,8 +664,8 @@
 
 
 <section id="slide17">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
                 <p class="mt-4 md:text-2xl">
                     <strong>Промпт</strong> (инструкция) — это ваш запрос или инструкция, которую вы даете GPT. Чем четче и понятнее вы сформулируете запрос, тем лучше GPT выполнит задачу. 
@@ -679,8 +692,8 @@
 
 
 <section id="slide18">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
                 <h1 class="text-2xl md:text-5xl font-bold">Основные принципы и методы работы с GPT</h1>
                 <p class="mt-4 md:text-2xl">
@@ -708,8 +721,8 @@
 
 
 <section id="slide19">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
                 <h2 class="text-xl md:text-4xl font-bold">1. Четкое формулирование вопросов</h2>
                 <p class="mt-4 md:text-2xl">
@@ -738,8 +751,8 @@
 
 
 <section id="slide20">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
                 <h2 class="text-xl md:text-4xl font-bold">2. Использование техники "Роли"</h2>
                 <p class="mt-4 md:text-2xl">
@@ -767,8 +780,8 @@
 
 
 <section id="slide21">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
                 <h2 class="text-xl md:text-4xl font-bold">3. Раздельный контекст</h2>
                 <p class="mt-4 md:text-2xl">
@@ -791,8 +804,8 @@
 
 
 <section id="slide22">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
                 <h2 class="text-xl md:text-4xl font-bold">4. Декомпозиция задачи (Chain of Prompts)</h2>
                 <p class="mt-4 md:text-2xl">
@@ -820,8 +833,8 @@
 
 
 <section id="slide23">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
                 <h2 class="text-xl md:text-4xl font-bold">5. Загрузите контекст</h2>
                 <p class="mt-4 md:text-2xl">
@@ -849,8 +862,8 @@
 
 
 <section id="slide24">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
                 <h2 class="text-xl md:text-4xl font-bold">6. Упоминание контекста</h2>
                 <p class="mt-4 md:text-2xl">
@@ -877,8 +890,8 @@
 
 
 <section id="slide25">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
                 <h2 class="text-xl md:text-4xl font-bold">7. Вопросы на уровне "почему" и "как"</h2>
                 <p class="mt-4 md:text-2xl">
@@ -905,8 +918,8 @@
 
 
 <section id="slide26">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
                 <h2 class="text-xl md:text-4xl font-bold">8. Моделирование мышления GPT</h2>
                 <p class="mt-4 md:text-2xl">
@@ -935,8 +948,8 @@
 
 
 <section id="slide27">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
                 <h2 class="text-xl md:text-4xl font-bold">9. Фокусировка когнитивных способностей</h2>
                 <p class="mt-4 md:text-2xl">
@@ -965,8 +978,8 @@
 
 
 <section id="slide28">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
                 <h2 class="text-xl md:text-4xl font-bold">10. Эмоциональный тон</h2>
                 <p class="mt-4 md:text-2xl">
@@ -994,8 +1007,8 @@
 
 
 <section id="slide29">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
                 <h2 class="text-xl md:text-4xl font-bold">11. Выделение ключевых частей запроса</h2>
                 <p class="mt-4 md:text-2xl">
@@ -1024,8 +1037,8 @@
 
 
 <section id="slide30">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
                 <h2 class="text-xl md:text-4xl font-bold">12. Использование GPT для мозгового штурма</h2>
                 <p class="mt-4 md:text-2xl">
@@ -1056,8 +1069,8 @@
 
 
 <section id="slide31">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
                 <h2 class="text-xl md:text-4xl font-bold">13. Рефрейминг вопросов</h2>
                 <p class="mt-4 md:text-2xl">
@@ -1088,8 +1101,8 @@
 
 
 <section id="slide32">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
                 <h2 class="text-xl md:text-4xl font-bold">14. Использование нестандартных форматов текста</h2>
                 <p class="mt-4 md:text-2xl">
@@ -1112,8 +1125,8 @@
 <hr class="border-t border-gray-700">
 
 <section id="slide33">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
                 <h2 class="text-xl md:text-4xl font-bold">15. Сравнительный анализ</h2>
                 <p class="mt-4 md:text-2xl">
@@ -1134,8 +1147,8 @@
 <hr class="border-t border-gray-700">
 
 <section id="slide34">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
                 <h2 class="text-xl md:text-4xl font-bold">16. Перехват инициативы</h2>
                 <p class="mt-4 md:text-2xl">
@@ -1156,8 +1169,8 @@
 <hr class="border-t border-gray-700">
 
 <section id="slide35">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
                 <h2 class="text-xl md:text-4xl font-bold">17. Прототипирование и тестирование гипотез</h2>
                 <p class="mt-4 md:text-2xl">
@@ -1178,8 +1191,8 @@
 <hr class="border-t border-gray-700">
 
 <section id="slide36">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
                 <h2 class="text-xl md:text-4xl font-bold">18. Анализ противоположных точек зрения</h2>
                 <p class="mt-4 md:text-2xl">
@@ -1200,8 +1213,8 @@
 <hr class="border-t border-gray-700">
 
 <section id="slide37">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
                 <h2 class="text-xl md:text-4xl font-bold">19. Запрашивание различных вариантов ответов</h2>
                 <p class="mt-4 md:text-2xl">
@@ -1222,8 +1235,8 @@
 <hr class="border-t border-gray-700">
 
 <section id="slide38">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
                 <h2 class="text-xl md:text-4xl font-bold">20. Моделирование диалогов</h2>
                 <p class="mt-4 md:text-2xl">
@@ -1247,8 +1260,8 @@
 
 
 <section id="slide39">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
                 <h1 class="text-2xl md:text-5xl font-bold">Ограничения GPT</h1>
                 <p class="mt-4 md:text-2xl">
@@ -1269,8 +1282,8 @@
 
 
 <section id="slide40">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
                 <ul class="list-disc list-inside mt-4">
                     <li><strong>Отсутствие оригинальности и креативности:</strong> Хотя GPT способен генерировать тексты, он делает это на основе уже существующих данных. Это означает, что его предложения не являются абсолютно оригинальными и могут повторять шаблоны или идеи, которые уже существуют в базе его знаний.</li>
@@ -1290,8 +1303,8 @@
 
 
 <section id="slide41">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
                 <h1 class="text-2xl md:text-5xl font-bold">Специальные приемы</h1>
                 <p class="mt-4 md:text-2xl">Существуют методы, которые позволяют обойти некоторые ограничения GPT и повысить качество его ответов в зависимости от задачи. Вот несколько полезных приемов:</p>
@@ -1309,8 +1322,8 @@
 
 
 <section id="slide42">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
                 <h2 class="text-xl md:text-4xl font-bold">1. Социальная приемлемость ответов</h2>
                 <p class="mt-4 md:text-2xl">GPT стремится дать социально приемлемый ответ. Модель запрограммирована избегать непопулярных или социально неодобряемых рекомендаций. Например, если правильное решение для бизнеса — уволить сотрудника, GPT может предлагать альтернативные варианты.</p>
@@ -1329,8 +1342,8 @@
 
 
 <section id="slide43">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
                 <h2 class="text-xl md:text-4xl font-bold">2. Мягкость и недостаток честности</h2>
                 <p class="mt-4 md:text-2xl">GPT запрограммирован быть вежливым и мягким с собеседником, что иногда приводит к излишней осторожности в ответах. Это может затруднить получение конструктивной критики или безжалостно честного мнения.</p>
@@ -1353,8 +1366,8 @@
 
 
 <section id="slide44">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
                 <h2 class="text-xl md:text-4xl font-bold">3. Создание маркетинговых текстов и обход систем типа GPTZero</h2>
                 <p class="mt-4 md:text-2xl">Если GPT используется для написания маркетинговых текстов или статей для SEO, необходимо давать конкретные указания по стилю. Уточните ядро идеи и задайте пример стиля повествования конкретного автора или компании.</p>
@@ -1377,8 +1390,8 @@
 
 
 <section id="slide45">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
                 <h2 class="text-xl md:text-4xl font-bold">Итоговые рекомендации</h2>
                 <p class="mt-4 md:text-2xl">Используйте перечисленные методы и рекомендации, чтобы повысить качество ответов от GPT и адаптировать их под свои задачи. Экспериментируйте с формулировками и структурами запросов, чтобы извлечь максимальную пользу из взаимодействия с моделью.</p>
@@ -1395,12 +1408,12 @@
 
 
 <section id="slide46">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
                 <h1 class="text-2xl md:text-5xl font-bold">Неожиданные возможности</h1>
                 <br>
-                <h2 class="text-4xl mt-4 font-bold">1. Рефлексия по видео</h2>
+                <h2 class="text-xl md:text-4xl mt-4 font-bold">1. Рефлексия по видео</h2>
                 <p class="mt-4 md:text-2xl">Этот метод позволяет усилить эффект от бизнес-видео. Вы можете извлечь ценную информацию из просмотренных материалов, преобразовав видео в текст и проработать его с помощью GPT.</p>
                 <p class="mt-4 md:text-2xl"><strong>Шаги:</strong></p>
                 <ul class="mt-4 list-disc pl-8">
@@ -1422,10 +1435,10 @@
 
 
 <section id="slide47">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
-                <h2 class="text-4xl mt-4 font-bold">2. Кастдев по офферу</h2>
+                <h2 class="text-xl md:text-4xl mt-4 font-bold">2. Кастдев по офферу</h2>
                 <p class="mt-4 md:text-2xl">Опишите свой продукт или услугу и спросите GPT, как он понимает ваше предложение. Это поможет вам проверить, насколько оно понятно клиентам.</p>
                 <p class="mt-4 md:text-2xl"><strong>Шаги:</strong></p>
                 <ul class="mt-4 list-disc pl-8">
@@ -1447,10 +1460,10 @@
 
 
 <section id="slide48">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
-                <h2 class="text-4xl mt-4 font-bold">3. Выявление глубинных страхов и потребностей клиентов</h2>
+                <h2 class="text-xl md:text-4xl mt-4 font-bold">3. Выявление глубинных страхов и потребностей клиентов</h2>
                 <p class="mt-4 md:text-2xl">Для успешной продажи важно закрывать ключевые потребности и страхи клиентов в правильном порядке. Соберите ключевые запросы ваших клиентов и попросите GPT проанализировать их.</p>
                 <p class="mt-4 md:text-2xl"><strong>Шаги:</strong></p>
                 <ul class="mt-4 list-disc pl-8">
@@ -1474,10 +1487,10 @@
 
 
 <section id="slide49">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
-                <h2 class="text-4xl mt-4 font-bold">4. Создание контент-планов по запросам из Вордстата</h2>
+                <h2 class="text-xl md:text-4xl mt-4 font-bold">4. Создание контент-планов по запросам из Вордстата</h2>
                 <p class="mt-4 md:text-2xl">Мы часто хотим получить качественный контент на месяцы вперед. Однако одних поисковых запросов недостаточно для создания креативного контент-плана.</p>
                 <p class="mt-4 md:text-2xl"><strong>Шаги:</strong></p>
                 <ul class="mt-4 list-disc pl-8">
@@ -1501,10 +1514,10 @@
 
 
 <section id="slide50">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
-                <h2 class="text-4xl mt-4 font-bold">5. Создание инфографики в HTML</h2>
+                <h2 class="text-xl md:text-4xl mt-4 font-bold">5. Создание инфографики в HTML</h2>
                 <p class="mt-4 md:text-2xl">С помощью текста можно создавать все что угодно, включая инфографику. Рассмотрим эту возможность.</p>
                 <p class="mt-4 md:text-2xl"><strong>Шаги:</strong></p>
                 <ul class="mt-4 list-disc pl-8">
@@ -1526,10 +1539,10 @@
 
 
 <section id="slide51">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
-                <h2 class="text-4xl mt-4 font-bold">6. Написание технического задания</h2>
+                <h2 class="text-xl md:text-4xl mt-4 font-bold">6. Написание технического задания</h2>
                 <p class="mt-4 md:text-2xl">Иногда мы не знаем, как сформулировать задачи для специалистов. Попросите GPT задавать вам вопросы, пока он не выяснит все детали.</p>
                 <p class="mt-4 md:text-2xl"><strong>Шаги:</strong></p>
                 <ul class="mt-4 list-disc pl-8">
@@ -1549,10 +1562,10 @@
 
 
 <section id="slide52">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
-                <h2 class="text-4xl mt-4 font-bold">7. Использование профессиональной терминологии</h2>
+                <h2 class="text-xl md:text-4xl mt-4 font-bold">7. Использование профессиональной терминологии</h2>
                 <p class="mt-4 md:text-2xl">GPT работает на основе многомерной карты слов, где разные термины имеют свои ассоциативные связи. Чтобы получить более точный ответ на специализированные вопросы, задавайте правильные вопросы о терминах.</p>
                 <p class="mt-4 md:text-2xl"><strong>Шаги:</strong></p>
                 <ul class="mt-4 list-disc pl-8">
@@ -1572,10 +1585,10 @@
 
 
 <section id="slide53">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
-                <h2 class="text-4xl mt-4 font-bold">Заключение</h2>
+                <h2 class="text-xl md:text-4xl mt-4 font-bold">Заключение</h2>
                 <p class="mt-4 md:text-2xl">Используйте перечисленные методы для эффективной работы с GPT. Экспериментируйте с запросами и получайте максимальную пользу от взаимодействия с моделью.</p>
                 <p class="mt-4 md:text-2xl">Ваша способность задавать правильные вопросы и формулировать запросы имеет решающее значение для достижения успеха.</p>
             </div>
@@ -1593,10 +1606,10 @@
 
 
 <section class="promo" id="slide54">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
-                <h1 class="text-6xl font-bold">Приглашение</h1>
+                <h1 class="text-4xl md:text-6xl font-bold">Приглашение</h1>
                 <p class="mt-4 md:text-2xl">Всё, что мы обсудили ранее, — это лишь верхушка айсберга возможностей, которые открывают нейросети. Мы, команда специалистов <a href="https://ai-m.io"><strong class="text-blue-300">AI-M.io</strong></a>, занимаемся автоматизацией бизнеса и разработали собственную IT-систему, использующую взаимодействия различных нейросетей.</p>
                 <p class="mt-4 md:text-2xl">Чтобы реализовать комплексные решения и максимально использовать возможности умных систем, обращайтесь к нам, и мы с радостью предложим вам индивидуальные решения для вашего успеха в мире технологий!</p>
                 <br>
@@ -1620,10 +1633,10 @@
 
 
 <section id="slide55">
-    <div class="flex flex-col md:flex-row h-full">
-        <div class="h-3/5 md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
+    <div class="flex flex-col md:flex-row md:h-full">
+        <div class="md:h-full md:w-3/5 flex items-center justify-center text-white p-8">
             <div class="text-blok">
-                <h1 class="text-6xl font-bold">ПОДАРОК</h1>
+                <h1 class="text-4xl md:text-6xl font-bold">ПОДАРОК</h1>
                 <p class="mt-4 md:text-2xl">Мы подготовили для вас подарок в виде бесплатных полезных ботов:</p>
                 <a href="https://t.me/+O_d6Vn4vrYE5ZDUy" class="mt-4 text-2xl text-blue-300"><ul>
                     <li>•  Нишка (бот для выбора ниши подходящей для вас)</li>
@@ -1660,32 +1673,6 @@
 </div>
 </body>
 <script defer>
-    let startX = 0;
-    let startY = 0;
-    // Функция для обработки начала касания
-    document.addEventListener('touchstart', (e) => {
-        console.log('!');
-        startX = e.touches[0].clientX;
-        startY = e.touches[0].clientY;
-    });
-    // Функция для обработки окончания касания
-    document.addEventListener('touchend', (e) => {
-        console.log('!!');
-        const endX = e.changedTouches[0].clientX;
-        const endY = e.changedTouches[0].clientY;
-
-        // Вычисляем разницу координат
-        const diffX = endX - startX;
-        const diffY = endY - startY;
-
-        // Проверяем, что свайп был по оси Y
-        if (Math.abs(diffY) > Math.abs(diffX)) {
-            if (diffY > 50) goToSlide(currentSlide-1);
-            if (diffY < -50) goToSlide(currentSlide+1);
-        }
-    });
-
-
 
     const promo = new URL(document.location.toString()).searchParams.get("p");
     const section = document.querySelector('.promo');
